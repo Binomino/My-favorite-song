@@ -6,6 +6,7 @@ public class ElectronicDanceMusic {
 		System.out.println("3. Cheerful");
 		System.out.println("4. Calm");
 		System.out.println("5. Exit");
+		System.out.println("6. Test");
 	}
 
 }
