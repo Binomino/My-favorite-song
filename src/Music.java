@@ -17,6 +17,6 @@ public class Music {
 	}
 	
 	public void printInfo() {
-		System.out.println("name : " + name + " id : " + id + "producer : " + producer + " type : " + type);
+		System.out.println("name : " + name + " id : " + id + " producer : " + producer + " type : " + type);
 	}
 }

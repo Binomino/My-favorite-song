@@ -5,8 +5,8 @@ public class EdmManagementSystem {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		MusicManager musicManager = new MusicManager(input);
+		
 		int num = -10;
-
 		while (num != 5) {
 			System.out.println("---------Edm Management System Menu--------");
 			System.out.println(" 1. Add Music");
