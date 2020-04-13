@@ -1,11 +1,12 @@
-
 public class Music {
 	String name;
 	int id;
 	String producer;
 	String type;
+	static int numMusicsRegistered = 0;
 	
 	public Music() {
+		numMusicsRegistered++;
 		
 	}
 	
@@ -14,6 +15,7 @@ public class Music {
 		this.id = id;
 		this.producer = producer;
 		this.type = type;
+		numMusicsRegistered++;
 	}
 	
 	public void printInfo() {

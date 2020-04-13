@@ -12,7 +12,7 @@ public class EdmManagementSystem {
 			System.out.println(" 1. Add Music");
 			System.out.println(" 2. Delete Music");
 			System.out.println(" 3. Edit Music");
-			System.out.println(" 4. View Music");
+			System.out.println(" 4. View Musics");
 			System.out.println(" 5. Exit");
 			System.out.println(" Select one number between 1 ~ 5 : ");
 			num = input.nextInt();
@@ -26,7 +26,7 @@ public class EdmManagementSystem {
 				musicManager.editMusic();
 			}
 			else if (num == 4) {
-				musicManager.viewMusic();
+				musicManager.viewMusics();
 			}
 			else {
 				continue;
