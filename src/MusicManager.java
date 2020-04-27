@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import music.FeaturingSingerMusic;
 import music.Music;
+import music.MusicKind;
 import music.SubProducerMusic;
 
 public class MusicManager {
@@ -15,25 +17,32 @@ public class MusicManager {
 	public void addMusic() {
 		int kind = 0;
 		Music music;
-		while (kind != 1 && kind !=2) {
-			System.out.print("1 for MainProducer");
-			System.out.print("2 for SubProducer");
-			System.out.print("Select num for Music Kind between 1 and 2 : ");
+		while (kind != 1 && kind !=2 && kind != 3) {
+			System.out.println("1 for MainProducer");
+			System.out.println("2 for SubProducer");
+			System.out.println("3 for FeaturingSinger");
+			System.out.println("Select num for Music Kind in 1, 2 or 3 : ");
 			kind = input.nextInt();
 			if (kind == 1) {
-				music = new Music();
+				music = new Music(MusicKind.MainProducer);
 				music.getUserInput(input);
 				musics.add(music);
 				break;
 			}
 			else if (kind == 2) {
-				music = new SubProducerMusic();
+				music = new SubProducerMusic(MusicKind.SubProducer);
+				music.getUserInput(input);
+				musics.add(music);
+				break;
+			}
+			else if (kind == 3) {
+				music = new FeaturingSingerMusic(MusicKind.FeaturingSinger);
 				music.getUserInput(input);
 				musics.add(music);
 				break;
 			}
 			else {
-				System.out.print("Select num for Music Kind between 1 and 2 : ");
+				System.out.print("Select num for Music Kind in 1, 2 or 3 : ");
 			}
 		}
 

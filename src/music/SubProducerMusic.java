@@ -3,6 +3,10 @@ package music;
 import java.util.Scanner;
 
 public class SubProducerMusic extends Music {
+	
+	public SubProducerMusic(MusicKind kind) {
+		super(kind);
+	}
 
 	public void getUserInput(Scanner input) {
 		System.out.print("Music ID : ");

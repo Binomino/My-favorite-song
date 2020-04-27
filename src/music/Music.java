@@ -13,12 +13,24 @@ public class Music {
 		
 	}
 	
+	public Music(MusicKind kind) {
+		this.kind = kind;
+	}
+	
 	public Music(String name, int id) {
 		this.name = name;
 		this.id = id;
 	}
 	
 	public Music(String name, int id, String type, String mood) {
+		this.name = name;
+		this.id = id;
+		this.type = type;
+		this.mood = mood;
+	}
+	
+	public Music(MusicKind kind, String name, int id, String type, String mood) {
+		this.kind = kind;
 		this.name = name;
 		this.id = id;
 		this.type = type;
@@ -64,9 +76,24 @@ public class Music {
 	public void setMood(String mood) {
 		this.mood = mood;
 	}
+
+	
 	
 	public void printInfo() {
-		System.out.println("name : " + name + " id : " + id + " type : " + type + " mood : " + mood);
+		String pkind = "none";
+		switch(this.kind) {
+		case MainProducer:
+			pkind = "MainP";
+			break;
+		case SubProducer:
+			pkind = "SubP";
+			break;
+		case FeaturingSinger:
+			pkind = "FeatureS";
+			break;
+		default:
+		}
+		System.out.println("kind : " + pkind + "name : " + name + " id : " + id + " type : " + type + " mood : " + mood);
 	}
 	
 	public void getUserInput(Scanner input) {
