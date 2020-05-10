@@ -2,12 +2,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import music.FeaturingSingerMusic;
+import music.MainProducerMusic;
 import music.Music;
+import music.MusicInput;
 import music.MusicKind;
 import music.SubProducerMusic;
 
 public class MusicManager {
-	ArrayList<Music> musics = new ArrayList<Music>();
+	ArrayList<MusicInput> musics = new ArrayList<MusicInput>();
 	Scanner input;
 	
 	MusicManager(Scanner input) {
@@ -16,7 +18,7 @@ public class MusicManager {
 	}
 	public void addMusic() {
 		int kind = 0;
-		Music music;
+		MusicInput musicInput;
 		while (kind != 1 && kind !=2 && kind != 3) {
 			System.out.println("1 for MainProducer");
 			System.out.println("2 for SubProducer");
@@ -24,25 +26,25 @@ public class MusicManager {
 			System.out.println("Select num for Music Kind in 1, 2 or 3 : ");
 			kind = input.nextInt();
 			if (kind == 1) {
-				music = new Music(MusicKind.MainProducer);
-				music.getUserInput(input);
-				musics.add(music);
+				musicInput = new MainProducerMusic(MusicKind.MainProducer);
+				musicInput.getUserInput(input);
+				musics.add(musicInput);
 				break;
 			}
 			else if (kind == 2) {
-				music = new SubProducerMusic(MusicKind.SubProducer);
-				music.getUserInput(input);
-				musics.add(music);
+				musicInput = new SubProducerMusic(MusicKind.SubProducer);
+				musicInput.getUserInput(input);
+				musics.add(musicInput);
 				break;
 			}
 			else if (kind == 3) {
-				music = new FeaturingSingerMusic(MusicKind.FeaturingSinger);
-				music.getUserInput(input);
-				musics.add(music);
+				musicInput = new FeaturingSingerMusic(MusicKind.FeaturingSinger);
+				musicInput.getUserInput(input);
+				musics.add(musicInput);
 				break;
 			}
 			else {
-				System.out.print("Select num for Music Kind in 1, 2 or 3 : ");
+				System.out.println("Select num for Music Kind in 1, 2 or 3 : ");
 			}
 		}
 
@@ -50,6 +52,12 @@ public class MusicManager {
 	public void deleteMusic() {
 		System.out.print("Music ID : ");
 		int MusicID = input.nextInt();
+		int index = findIndex(MusicID);
+		removefromMusics(index, MusicID);
+
+	}
+	
+	public int findIndex(int MusicID) {
 		int index = -1;
 		for (int i = 0; i<musics.size(); i++) {
 			if (musics.get(i).getId() == MusicID) {
@@ -57,67 +65,70 @@ public class MusicManager {
 				break;
 			}
 		}
-		
+		return index;
+	}
+	
+	public int removefromMusics(int index, int MusicID) {
 		if(index >=0) {
 			musics.remove(index);
 			System.out.println("Music" + MusicID + "is deleted");
+			return 1;
 		}
 		else {
 			System.out.println("That music is not your music");
-			return;
+			return -1;
 		}
 	}
+	
 	public void editMusic() {
 		System.out.print("Music ID : ");
 		int MusicID = input.nextInt();
 		for (int i = 0; i<musics.size(); i++) {
-			Music music = musics.get(i);
+			MusicInput music = musics.get(i);
 			if (music.getId() == MusicID) {
 				int num = -10;
 				while (num != 5) {
-					System.out.println("**** Music Edit Menu ****");
-					System.out.println(" 1. Edit id");
-					System.out.println(" 2. Edit name");
-					System.out.println(" 3. Edit type");
-					System.out.println(" 4. Edit mood");
-					System.out.println(" 5. Exit");
-					System.out.println(" Select one number between 1 ~ 5 : ");
+					showEditMenu();
 					num = input.nextInt();
-					if (num == 1) {
-						System.out.print("Music ID : ");
-						int id = input.nextInt();
-						music.setId(id);
-					}
-					else if (num == 2) {
-						System.out.print("Music Name : ");
-						String name = input.next();
-						music.setName(name);
-					}
-					else if (num == 3) {
-						System.out.print("Music Type : ");
-						String type = input.next();
-						music.setType(type);
-					}
-					else if (num == 4) {
-						System.out.print("Music Mood : ");
-						String mood = input.next();
-						music.setMood(mood);
-					}
-					else {
+					switch(num) {
+					case 1:
+						music.setMusicID(input);
+						break;
+					case 2:
+						music.setMusicName(input);
+						break;
+					case 3:
+						music.setMusicType(input);
+						break;
+					case 4:
+						music.setMusicMood(input);
+						break;
+					default:
 						continue;
-					} // if
+					}
 				} // while
 				break;
 			} // if
 		} // for
 	}
 	public void viewMusics() {
-//		System.out.print("Music ID : ");
-//		int MusicID = input.nextInt();
 		System.out.println("numbers of registered musics : " + musics.size());
 		for (int i = 0; i<musics.size(); i++) {
 			musics.get(i).printInfo();
 		}
+	}
+	
+
+	
+	public void showEditMenu() {
+		System.out.println("**** Music Edit Menu ****");
+		System.out.println(" 1. Edit id");
+		System.out.println(" 2. Edit name");
+		System.out.println(" 3. Edit type");
+		System.out.println(" 4. Edit mood");
+		System.out.println(" 5. Exit");
+		System.out.println(" Select one number between 1 ~ 5 : ");
+		
 	}
 
 }

@@ -4,5 +4,6 @@ public enum MusicKind {
 	MainProducer,
 	
 	SubProducer,
+	MainSinger,
 	FeaturingSinger
 }

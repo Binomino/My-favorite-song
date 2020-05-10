@@ -2,7 +2,7 @@ package music;
 
 import java.util.Scanner;
 
-public class Music {
+public abstract class Music implements MusicInput {
 	protected MusicKind kind = MusicKind.MainProducer;
 	protected String name;
 	protected int id;
@@ -77,9 +77,33 @@ public class Music {
 		this.mood = mood;
 	}
 
+	public abstract void printInfo();
 	
+	public void setMusicID(Scanner input) {
+		System.out.print("Music ID : ");
+		int id = input.nextInt();
+		this.setId(id);
+	}
 	
-	public void printInfo() {
+	public void setMusicName(Scanner input) {
+		System.out.print("Music Name : ");
+		String name = input.next();
+		this.setName(name);
+	}
+	
+	public void setMusicType(Scanner input) {
+		System.out.print("Music Type : ");
+		String type = input.next();
+		this.setType(type);
+	}
+	
+	public void setMusicMood(Scanner input) {
+		System.out.print("Music Mood : ");
+		String mood = input.next();
+		this.setMood(mood);
+	}
+	
+	public String getKindString() {
 		String pkind = "none";
 		switch(this.kind) {
 		case MainProducer:
@@ -88,29 +112,14 @@ public class Music {
 		case SubProducer:
 			pkind = "SubP";
 			break;
+		case MainSinger:
+			pkind = "MainS";
+			break;
 		case FeaturingSinger:
 			pkind = "FeatureS";
 			break;
 		default:
 		}
-		System.out.println("kind : " + pkind + "name : " + name + " id : " + id + " type : " + type + " mood : " + mood);
-	}
-	
-	public void getUserInput(Scanner input) {
-		System.out.print("Music ID : ");
-		int id = input.nextInt();
-		this.setId(id);
-		
-		System.out.print("Music Name : ");
-		String name = input.next();
-		this.setName(name);
-		
-		System.out.print("Music Type : ");
-		String type = input.next();
-		this.setType(type);
-		
-		System.out.print("Music Mood : ");
-		String mood = input.next();
-		this.setMood(mood);
+		return pkind;
 	}
 }
