@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import music.FeaturingSingerMusic;
@@ -11,40 +12,50 @@ import music.SubProducerMusic;
 public class MusicManager {
 	ArrayList<MusicInput> musics = new ArrayList<MusicInput>();
 	Scanner input;
-	
+
 	MusicManager(Scanner input) {
 		this.input = input;
-		
+
 	}
 	public void addMusic() {
 		int kind = 0;
 		MusicInput musicInput;
-		while (kind != 1 && kind !=2 && kind != 3) {
-			System.out.println("1 for MainProducer");
-			System.out.println("2 for SubProducer");
-			System.out.println("3 for FeaturingSinger");
-			System.out.println("Select num for Music Kind in 1, 2 or 3 : ");
-			kind = input.nextInt();
-			if (kind == 1) {
-				musicInput = new MainProducerMusic(MusicKind.MainProducer);
-				musicInput.getUserInput(input);
-				musics.add(musicInput);
-				break;
-			}
-			else if (kind == 2) {
-				musicInput = new SubProducerMusic(MusicKind.SubProducer);
-				musicInput.getUserInput(input);
-				musics.add(musicInput);
-				break;
-			}
-			else if (kind == 3) {
-				musicInput = new FeaturingSingerMusic(MusicKind.FeaturingSinger);
-				musicInput.getUserInput(input);
-				musics.add(musicInput);
-				break;
-			}
-			else {
+		while (kind < 1 || kind > 3) {
+			try {
+				System.out.println("1 for MainProducer");
+				System.out.println("2 for SubProducer");
+				System.out.println("3 for FeaturingSinger");
 				System.out.println("Select num for Music Kind in 1, 2 or 3 : ");
+				kind = input.nextInt();
+				if (kind == 1) {
+					musicInput = new MainProducerMusic(MusicKind.MainProducer);
+					musicInput.getUserInput(input);
+					musics.add(musicInput);
+					break;
+				}
+				else if (kind == 2) {
+					musicInput = new SubProducerMusic(MusicKind.SubProducer);
+					musicInput.getUserInput(input);
+					musics.add(musicInput);
+					break;
+				}
+				else if (kind == 3) {
+					musicInput = new FeaturingSingerMusic(MusicKind.FeaturingSinger);
+					musicInput.getUserInput(input);
+					musics.add(musicInput);
+					break;
+				}
+				else {
+					System.out.println("Select num for Music Kind in 1, 2 or 3 : ");
+				}
+			}
+			catch(InputMismatchException e) {
+				System.out.println("Please put an integer between 1 ~ 3!");
+				if (input.hasNext()) {
+					input.next();
+				}
+				kind = -1;
+
 			}
 		}
 
@@ -56,7 +67,7 @@ public class MusicManager {
 		removefromMusics(index, MusicID);
 
 	}
-	
+
 	public int findIndex(int MusicID) {
 		int index = -1;
 		for (int i = 0; i<musics.size(); i++) {
@@ -67,7 +78,7 @@ public class MusicManager {
 		}
 		return index;
 	}
-	
+
 	public int removefromMusics(int index, int MusicID) {
 		if(index >=0) {
 			musics.remove(index);
@@ -79,7 +90,7 @@ public class MusicManager {
 			return -1;
 		}
 	}
-	
+
 	public void editMusic() {
 		System.out.print("Music ID : ");
 		int MusicID = input.nextInt();
@@ -117,9 +128,9 @@ public class MusicManager {
 			musics.get(i).printInfo();
 		}
 	}
-	
 
-	
+
+
 	public void showEditMenu() {
 		System.out.println("**** Music Edit Menu ****");
 		System.out.println(" 1. Edit id");
@@ -128,7 +139,7 @@ public class MusicManager {
 		System.out.println(" 4. Edit mood");
 		System.out.println(" 5. Exit");
 		System.out.println(" Select one number between 1 ~ 5 : ");
-		
+
 	}
 
 }

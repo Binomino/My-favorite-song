@@ -2,6 +2,8 @@ package music;
 
 import java.util.Scanner;
 
+import exception.TypeFormatException;
+
 public interface MusicInput {
 	
 	public int getId();
@@ -10,7 +12,7 @@ public interface MusicInput {
 	
 	public void setName(String name);
 	
-	public void setType(String type);
+	public void setType(String type) throws TypeFormatException;
 	
 	public void setMood(String mood);
 

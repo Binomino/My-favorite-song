@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class EdmManagementSystem {
@@ -6,27 +7,42 @@ public class EdmManagementSystem {
 		Scanner input = new Scanner(System.in);
 		MusicManager musicManager = new MusicManager(input);
 		
+		selectMenu(input, musicManager);
+
+	}
+	
+	public static void selectMenu(Scanner input, MusicManager musicManager) {
 		int num = -10;
 		while (num != 5) {
-			showMenu();
-			num = input.nextInt();
-			switch(num) {
-			case 1:
-				musicManager.addMusic();
-				break;
-			case 2:
-				musicManager.deleteMusic();
-				break;
-			case 3:
-				musicManager.editMusic();
-				break;
-			case 4:
-				musicManager.viewMusics();
-				break;
-			default:
-				continue;
+			try {
+				showMenu();
+				num = input.nextInt();
+				switch(num) {
+				case 1:
+					musicManager.addMusic();
+					break;
+				case 2:
+					musicManager.deleteMusic();
+					break;
+				case 3:
+					musicManager.editMusic();
+					break;
+				case 4:
+					musicManager.viewMusics();
+					break;
+				default:
+					continue;
+				}
+			}
+			catch(InputMismatchException e) {
+				System.out.println("Please put an integer between 1 ~ 5!");
+				if (input.hasNext()) {
+					input.next();
+				}
+				num = -1;
 			}
 		}
+		
 	}
 	
 	public static void showMenu() {

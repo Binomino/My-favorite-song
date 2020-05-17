@@ -2,6 +2,8 @@ package music;
 
 import java.util.Scanner;
 
+import exception.TypeFormatException;
+
 public abstract class Music implements MusicInput {
 	protected MusicKind kind = MusicKind.MainProducer;
 	protected String name;
@@ -65,7 +67,10 @@ public abstract class Music implements MusicInput {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(String type) throws TypeFormatException {
+		if (!type.contains("House") && !type.contentEquals("")) {
+			throw new TypeFormatException();
+		}
 		this.type = type;
 	}
 
@@ -92,9 +97,17 @@ public abstract class Music implements MusicInput {
 	}
 	
 	public void setMusicType(Scanner input) {
-		System.out.print("Music Type : ");
-		String type = input.next();
-		this.setType(type);
+		String type = "";
+		while (!type.contains("House")) {
+			System.out.print("Music Type : ");
+			type = input.next();
+			try {
+				this.setType(type);
+			} 
+			catch (TypeFormatException e) {
+				System.out.println("This is not your music type. Try to input house music type");
+			}
+		}
 	}
 	
 	public void setMusicMood(Scanner input) {
