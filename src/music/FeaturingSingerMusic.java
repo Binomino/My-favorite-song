@@ -49,7 +49,7 @@ public class FeaturingSingerMusic extends SingerMusic {
 
 	public void printInfo() {
 		String pkind = getKindString();
-		System.out.println("kind : " + pkind + "name : " + name + " id : " + id + " type : " + type + " mood : " + mood + "voice's type : " + type + "voice's mood : " + mood);
+		System.out.println("kind : " + pkind + " name : " + name + " id : " + id + " type : " + type + " mood : " + mood + "voice's type : " + type + "voice's mood : " + mood);
 	}
 	
 

@@ -1,0 +1,2 @@
+5월 24, 2020 7:24:30 오후 log.EventLogger log
+정보: view a list of music

@@ -17,7 +17,7 @@ public class MainProducerMusic extends Music {
 	
 	public void printInfo() {
 		String pkind = getKindString();
-		System.out.println("kind : " + pkind + "name : " + name + " id : " + id + " type : " + type + " mood : " + mood);
+		System.out.println("kind : " + pkind + " name : " + name + " id : " + id + " type : " + type + " mood : " + mood);
 	}
 
 }

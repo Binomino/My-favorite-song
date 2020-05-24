@@ -1,17 +1,22 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import music.FeaturingSingerMusic;
 import music.MainProducerMusic;
-import music.Music;
 import music.MusicInput;
 import music.MusicKind;
 import music.SubProducerMusic;
 
-public class MusicManager {
+public class MusicManager implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1948883069552239912L;
+	
 	ArrayList<MusicInput> musics = new ArrayList<MusicInput>();
-	Scanner input;
+	transient Scanner input;
 
 	MusicManager(Scanner input) {
 		this.input = input;

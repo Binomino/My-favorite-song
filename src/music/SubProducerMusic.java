@@ -14,7 +14,4 @@ public class SubProducerMusic extends SingerMusic {
 		setMusicTypewithYN(input);
 		setMusicMood(input);
 	}
-	
-
-	
 }

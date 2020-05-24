@@ -1,10 +1,16 @@
 package music;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import exception.TypeFormatException;
 
-public abstract class Music implements MusicInput {
+public abstract class Music implements MusicInput, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5703645065382415262L;
+	
 	protected MusicKind kind = MusicKind.MainProducer;
 	protected String name;
 	protected int id;

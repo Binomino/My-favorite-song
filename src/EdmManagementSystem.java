@@ -1,14 +1,26 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import log.EventLogger;
 
 public class EdmManagementSystem {
+	static EventLogger logger = new EventLogger("log.txt");
 
 	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		MusicManager musicManager = new MusicManager(input);
 		
-		selectMenu(input, musicManager);
+		Scanner input = new Scanner(System.in);
+		MusicManager musicManager = getObject("musicmanager.ser");
+		if(musicManager == null) {
+			musicManager = new MusicManager(input);
+		}
 
+		selectMenu(input, musicManager);
+		putObject(musicManager, "musicmanager.ser");
 	}
 	
 	public static void selectMenu(Scanner input, MusicManager musicManager) {
@@ -20,15 +32,19 @@ public class EdmManagementSystem {
 				switch(num) {
 				case 1:
 					musicManager.addMusic();
+					logger.log("add a music");
 					break;
 				case 2:
 					musicManager.deleteMusic();
+					logger.log("delete a music");
 					break;
 				case 3:
 					musicManager.editMusic();
+					logger.log("edit a music");
 					break;
 				case 4:
 					musicManager.viewMusics();
+					logger.log("view a list of music");
 					break;
 				default:
 					continue;
@@ -55,6 +71,52 @@ public class EdmManagementSystem {
 		System.out.println(" Select one number between 1 ~ 5 : ");
 		
 		
+	}
+	
+	public static MusicManager getObject(String filename) {
+		MusicManager musicManager = null;
+		
+		try {
+			FileInputStream file = new FileInputStream(filename);
+			ObjectInputStream in = new ObjectInputStream(file);
+			
+			musicManager = (MusicManager)in.readObject();
+			
+			in.close();
+			file.close();
+			
+			
+		} catch (FileNotFoundException e) {
+			return musicManager;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return musicManager;
+	}
+	
+	public static void putObject(MusicManager musicManager, String filename) {
+		try {
+			FileOutputStream file = new FileOutputStream(filename);
+			ObjectOutputStream out = new ObjectOutputStream(file);
+			
+			out.writeObject(musicManager);
+			
+			out.close();
+			file.close();
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
