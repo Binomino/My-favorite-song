@@ -18,6 +18,9 @@ public class EdmManagementSystem {
 		if(musicManager == null) {
 			musicManager = new MusicManager(input);
 		}
+		else {
+			musicManager.setScanner(input);
+		}
 
 		selectMenu(input, musicManager);
 		putObject(musicManager, "musicmanager.ser");
@@ -89,10 +92,8 @@ public class EdmManagementSystem {
 		} catch (FileNotFoundException e) {
 			return musicManager;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -111,10 +112,8 @@ public class EdmManagementSystem {
 			
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

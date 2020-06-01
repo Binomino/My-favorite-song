@@ -22,6 +22,10 @@ public class MusicManager implements Serializable{
 		this.input = input;
 
 	}
+	
+	public void setScanner(Scanner input) {
+		this.input = input;
+	}
 	public void addMusic() {
 		int kind = 0;
 		MusicInput musicInput;
