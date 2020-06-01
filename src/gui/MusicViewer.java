@@ -14,11 +14,10 @@ public class MusicViewer extends JFrame{
 		model.addColumn("Type");
 		model.addColumn("Mood");
 		
-		JTable table  = new JTable(new DefaultTableModel());
+		JTable table  = new JTable(model);
 		JScrollPane sp = new JScrollPane(table);
 		
 		this.add(sp);
-		
 		this.setSize(300, 300);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);

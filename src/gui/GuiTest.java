@@ -7,5 +7,4 @@ public class GuiTest {
 //		MusicAdder musicadder = new MusicAdder();
 		MusicViewer musicviewer = new MusicViewer();
 	}
-
 }
