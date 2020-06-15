@@ -3,39 +3,37 @@ package gui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class WindowFrame extends JFrame{
+import manager.MusicManager;
 
-	MenuSelection menuselection;
+public class WindowFrame extends JFrame{
+	
+	MusicManager musicManager;
+	
+	MenuSelection menuSelection;
 	MusicAdder musicadder;
 	MusicViewer musicviewer;
 
-	public WindowFrame() {
-		this.menuselection = new MenuSelection(this);
-		this.musicadder = new MusicAdder(this);
-		this.musicviewer = new MusicViewer(this);
-		
+	public WindowFrame(MusicManager musicManager) {
 		this.setSize(500, 300);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("My Frame");
 		
-		this.setupPanel(menuselection);
+		this.musicManager =  musicManager;
+		menuSelection = new MenuSelection(this);
+		musicadder = new MusicAdder(this);
+		musicviewer = new MusicViewer(this, this.musicManager);
 		
+		this.add(menuSelection);
 		
 		this.setVisible(true);
 	}
 	
-	public void setupPanel(JPanel panel) {
-		this.getContentPane().removeAll();
-		this.getContentPane().add(panel);
-		this.revalidate();
-		this.repaint();
-	}
-	
-	public MenuSelection getMenuselection() {
-		return menuselection;
+	public MenuSelection getMenuSelection() {
+		return menuSelection;
 	}
 
-	public void setMenuselection(MenuSelection menuselection) {
-		this.menuselection = menuselection;
+	public void setMenuselection(MenuSelection menuSelection) {
+		this.menuSelection = menuSelection;
 	}
 
 	public MusicAdder getMusicadder() {

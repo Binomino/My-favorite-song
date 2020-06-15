@@ -10,9 +10,15 @@ public interface MusicInput {
 	
 	public void setId(int id);
 	
+	public String getName();
+	
 	public void setName(String name);
 	
+	public String getType();
+	
 	public void setType(String type) throws TypeFormatException;
+	
+	public String getMood();
 	
 	public void setMood(String mood);
 

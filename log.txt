@@ -1,4 +1,0 @@
-5월 24, 2020 8:13:58 오후 log.EventLogger log
-정보: add a music
-5월 24, 2020 8:15:19 오후 log.EventLogger log
-정보: edit a music
